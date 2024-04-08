@@ -11,13 +11,15 @@ export class VRCController{
         @Body('description') prodDesc: string, 
         @Body('price') prodPrice: number,
         @Body('link') prodLink: string,
+        @Body('image') prodImage: string
         ){
         
         const generatedId = await this.VRCService.insertVRC(
             prodTitle,
             prodDesc, 
             prodPrice,
-            prodLink
+            prodLink,
+            prodImage
             );
         return {id: generatedId}; 
     }
@@ -40,9 +42,10 @@ export class VRCController{
         @Body('title') prodTitle: string, 
         @Body('description') prodDesc: string, 
         @Body('price') prodPrice: number,
-        @Body('link') prodLink: string
+        @Body('link') prodLink: string,
+        @Body('image') prodImage: string
         ) {
-        await this.VRCService.updateVRC(prodId, prodTitle, prodDesc, prodPrice, prodLink)
+        await this.VRCService.updateVRC(prodId, prodTitle, prodDesc, prodPrice, prodLink, prodImage)
         return null;
     }
     @Delete(':id')

@@ -12,13 +12,14 @@ export class VRCService{
 
     }
 
-    async insertVRC(title: string, desc :string,  price: number, link: string){
+    async insertVRC(title: string, desc :string,  price: number, link: string, image: string){
        // const prodId = Math.random().toString();
         const newVRC = new this.VRCModel({
             title, 
             description: desc, 
             price,
             link,
+            image,
         });
         const result = await newVRC.save();
         console.log(result);
@@ -33,7 +34,8 @@ export class VRCService{
             title: prod.title, 
             description: prod.description, 
             price: prod.price,
-            link: prod.link
+            link: prod.link,
+            image: prod.image
 
         }));
 
@@ -45,11 +47,12 @@ export class VRCService{
         title: VRC.title,
         description: VRC.description,
         price: VRC.price,
-        link: VRC.link
+        link: VRC.link,
+        image: VRC.image
     }; 
     } 
 
-   async updateVRC(VRCId: string, title: string, desc: string, price: number, link: string){
+   async updateVRC(VRCId: string, title: string, desc: string, price: number, link: string, image: string){
         
         const updatedVRC = await this.findVRC(VRCId);
         
@@ -71,6 +74,10 @@ export class VRCService{
             updatedVRC.link = link;
 
         }
+        if( image){
+            updatedVRC.image = image;
+
+        }
         updatedVRC.save();
         
          
@@ -85,17 +92,17 @@ export class VRCService{
         let VRC;
 
         try{
-            const VRC = await this.VRCModel.findById(id).exec();
+            VRC = await this.VRCModel.findById(id).exec();
 
         }catch(error){
-            throw new NotFoundException('Could not find product');  
+            throw new NotFoundException('Could not find product error');  
 
         }
        
         // const productIndex = this.products.findIndex((prod) => prod.id == id);
         // const product= this.products[productIndex];
         if(!VRC){
-            throw new NotFoundException('Could not find product');  
+            throw new NotFoundException('Could not find product not found');  
         }
         return VRC; 
     }

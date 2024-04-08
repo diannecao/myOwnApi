@@ -4,7 +4,8 @@ export const VRCSchema = new mongoose.Schema({
     title: {type: String, required: true},
     description: {type: String, required: true},
     price: {type: Number, required: true},
-    link: {type: String, required: true}
+    link: {type: String, required: true},
+    image: {type: String, required: true}
 
 });
 
@@ -16,5 +17,6 @@ export interface VRC extends mongoose.Document{
     description: string; 
     price: number;
     link: string
+    image: string
         
 }
