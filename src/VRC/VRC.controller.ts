@@ -8,6 +8,7 @@ export class VRCController{
     @Post()
     async addVRC(
         @Body('title') prodTitle: string, 
+        @Body('type') prodType: string,
         @Body('description') prodDesc: string, 
         @Body('price') prodPrice: number,
         @Body('link') prodLink: string,
@@ -16,6 +17,7 @@ export class VRCController{
         
         const generatedId = await this.VRCService.insertVRC(
             prodTitle,
+            prodType,
             prodDesc, 
             prodPrice,
             prodLink,
@@ -40,12 +42,13 @@ export class VRCController{
     async updateVRC(
         @Param('id') prodId: string, 
         @Body('title') prodTitle: string, 
+        @Body('type') prodType: string, 
         @Body('description') prodDesc: string, 
         @Body('price') prodPrice: number,
         @Body('link') prodLink: string,
         @Body('image') prodImage: string
         ) {
-        await this.VRCService.updateVRC(prodId, prodTitle, prodDesc, prodPrice, prodLink, prodImage)
+        await this.VRCService.updateVRC(prodId, prodTitle, prodType, prodDesc, prodPrice, prodLink, prodImage)
         return null;
     }
     @Delete(':id')

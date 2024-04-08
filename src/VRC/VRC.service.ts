@@ -12,10 +12,11 @@ export class VRCService{
 
     }
 
-    async insertVRC(title: string, desc :string,  price: number, link: string, image: string){
+    async insertVRC(title: string, type: string, desc :string,  price: number, link: string, image: string){
        // const prodId = Math.random().toString();
         const newVRC = new this.VRCModel({
             title, 
+            type,
             description: desc, 
             price,
             link,
@@ -31,6 +32,7 @@ export class VRCService{
         //console.log(result);
         return VRC.map((prod)=> ({
             id: prod.id, 
+            type: prod.type,
             title: prod.title, 
             description: prod.description, 
             price: prod.price,
@@ -45,6 +47,7 @@ export class VRCService{
         const VRC = await this.findVRC(VRCId);
         return {id: VRC.id, 
         title: VRC.title,
+        type: VRC.type,
         description: VRC.description,
         price: VRC.price,
         link: VRC.link,
@@ -52,7 +55,7 @@ export class VRCService{
     }; 
     } 
 
-   async updateVRC(VRCId: string, title: string, desc: string, price: number, link: string, image: string){
+   async updateVRC(VRCId: string, title: string, type: string, desc: string, price: number, link: string, image: string){
         
         const updatedVRC = await this.findVRC(VRCId);
         
@@ -60,6 +63,10 @@ export class VRCService{
         console.log(title)
         if( title){
             updatedVRC.title = title;
+
+        }
+        if( type){
+            updatedVRC.type = type;
 
         }
         if( desc){
