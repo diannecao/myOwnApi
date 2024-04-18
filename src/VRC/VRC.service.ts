@@ -11,6 +11,57 @@ export class VRCService{
     constructor(@InjectModel('VRC') private readonly VRCModel: Model<VRC>){
 
     }
+    async getAllMotion(){
+        const motions = await this.VRCModel.find().exec();
+        const motion = motions.filter((e)=> e.type === "motion");
+        return motion.map(c => ({ id: c.id, 
+            type: c.type,
+            title: c.title,
+            price: c.price,
+            description: c.description, 
+            link: c.link, 
+            image: c.image 
+        }));
+    }
+
+    async getAllGame(){
+        const games = await this.VRCModel.find().exec();
+        const game = games.filter((e)=> e.type === "game");
+        return game.map(c => ({ id: c.id, 
+            type: c.type,
+            title: c.title,
+            price: c.price,
+            description: c.description, 
+            link: c.link, 
+            image: c.image 
+        }));
+    }
+
+    async getAllKit(){
+        const kits = await this.VRCModel.find().exec();
+        const kit = kits.filter((e)=> e.type === "kit");
+        return kit.map(c => ({ id: c.id, 
+            type: c.type,
+            title: c.title,
+            price: c.price,
+            description: c.description, 
+            link: c.link, 
+            image: c.image 
+        }));
+    }
+
+    async getAllE(){
+        const electronics = await this.VRCModel.find().exec();
+        const elec = electronics.filter((e)=> e.type === "electronics");
+        return elec.map(c => ({ id: c.id, 
+            type: c.type,
+            title: c.title,
+            price: c.price,
+            description: c.description, 
+            link: c.link, 
+            image: c.image 
+        }));
+    }
 
     async insertVRC(title: string, type: string, desc :string,  price: number, link: string, image: string){
        // const prodId = Math.random().toString();

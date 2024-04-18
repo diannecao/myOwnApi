@@ -1,5 +1,7 @@
 import {Controller, Post, Body, Get, Param, Patch, Delete} from '@nestjs/common';
+//import { GamesService } from './Games.service';
 import { GamesService } from './Games.service';
+
 @Controller('Games')
 export class GamesController{
     constructor(private readonly GamesService: GamesService){

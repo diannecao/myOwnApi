@@ -1,7 +1,8 @@
 import { Module } from "@nestjs/common";
 import {MongooseModule} from "@nestjs/mongoose";
 import { GamesController } from "./Games.controller";
-import { GamesService } from "./Games.service";
+//import { GamesService } from "./Games.service";
+import{ GamesService } from "./Games.service";
 import { GamesSchema } from "./Games.model";
 
 @Module({

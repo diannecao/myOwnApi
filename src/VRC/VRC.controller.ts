@@ -58,4 +58,27 @@ export class VRCController{
 
     }
 
+   @Get('type/electronics')
+    async getAllE(){
+        const electronics = await this.VRCService.getAllE();
+        return electronics;
+    }
+
+    @Get('type/kit')
+    async getAllKit(){
+        const kits = await this.VRCService.getAllKit();
+        return kits;
+    }
+
+    @Get('type/game')
+    async getAllGame(){
+        const games = await this.VRCService.getAllGame();
+        return games;
+    }
+
+    @Get('type/motion')
+    async getAllMotion(){
+        const motions = await this.VRCService.getAllMotion();
+        return motions;
+    }
 }
